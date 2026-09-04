@@ -1,42 +1,98 @@
-# CompraCerta
- 
-## Descrição do Cenário
-O supermercado vende produtos de diversas categorias. Quando o cliente acessar o sistema do CompraCerta ele poderá visualizar todos esses produtos de acordo com a categoria desejada. O supermercado eventualmente realiza promoções que devem ser apresentadas em destaque ao cliente. Para que o cliente efetue uma compra ele precisa se cadastrar no CompraCerta, selecionar os produtos desejados e efetuar o pagamento. Uma vez paga a compra ela entra em uma fila para ser atendida.
+# 🛒 Supermercado CompraCerta
+Projeto construído usando `MySQL`, `PHP`e o padrão **`MVC`** simulando um sistema de compras online, desde a consulta e seleção dos produtos pelo cliente até a preparação, conferência, embalagem e entrega do pedido.
 
-Visando atender às compra on-line, o supermercado operacionalizou seus processos internos em três setores: **preparação; conferencia e embalagem; e entrega**.
+## ✨ Funcionalidades
+### 👤 Cliente
+- Cadastro de cliente
+- Inclusão, alteração, exclusão e consulta de clientes
+- Visualização de produtos por categoria
+- Seleção de produtos
+- Fechamento da compra
+- Pagamento com cartão de crédito
+- Definição do endereço de entrega
+- Consulta do histórico de compras
+- Cópia de uma compra anterior
+- Rastreamento da compra
+- Avaliação da compra
+- Inclusão de comentários sobre a compra
 
-Na **preparação**, funcionários do supermercado selecionam fisicamente no estoque os produtos comprados e os colocam em um carrinho físico. Para facilitar a coleta
-dos produtos, espera-se que eles utilizem um tablet que apresente a lista dos produtos da compra. O sistema deve apresentar sempre os produtos da primeira compra da fila. Podem existir vários funcionários neste setor e cada um atende a uma compra por vez.
+### 📦 Setor de Preparação
+- Visualização das compras aguardando preparação
+- Atendimento das compras seguindo a ordem da fila
+- Visualização dos produtos que devem ser separados
+- Envio da compra para o setor de conferência e embalagem
 
-Depois de separados todos os produtos, o funcionário entrega o carrinho ao setor de **conferência e embalagem**. Neste setor outro funcionário confere o pedido (se tiver algum problema ele retorna para a preparação), embala e envia para o setor de entregas.
+### 🔎 Setor de Conferência e Embalagem
+- Visualização das compras recebidas
+- Conferência dos produtos
+- Devolução da compra para o setor de preparação quando houver problemas
+- Envio da compra para o setor de entrega
 
-A compra então é **encaminhada para a casa do cliente**. Não é cobrado frete para a entrega. Para facilitar o rastreamento da compra é importante registra quando ela entrou e saiu de cada setor até ser entregue ao cliente.
-Quando a compra chega à residência do cliente o entregador conclui a entrega no sistema. Neste momento fica disponível no sistema uma opção para o cliente avaliar a qualidade da compra como ruim, boa ou ótima e fazer comentários.
+### 🚚 Setor de Entrega
+- Visualização das compras aguardando entrega
+- Encaminhamento da compra para o endereço informado
+- Confirmação da entrega
+- Finalização do pedido
+
+### 📍 Rastreamento
+- O sistema permite consultar a situação da compra durante todo o processo.
+- O sistema deve registrar a entrada e a saída da compra em cada etapa, permitindo acompanhar seu histórico.
+
+### 💳 Pagamento
+- O pagamento é realizado exclusivamente por cartão de crédito no momento do fechamento da compra.
+
+### 🏠 Endereço de Entrega
+Durante o fechamento da compra, o cliente deve informar o endereço de entrega. O endereço pode ser:
+- O mesmo endereço cadastrado no sistema.
+- Um endereço diferente informado para aquela compra.
 
 
-## Pontos importantes:
-Considere a existência de outro sistema onde os funcionários, as categorias, produtos, fabricantes e as promoções já estão cadastrados e você utilizará o banco de dados deste sistema. Desta forma, não é necessário implementar esses programas. Você deve somente construir um banco de dados e inserir manualmente esses dados.
+### 🚚 Entrega
+Depois de conferida e embalada, a compra é encaminhada para entrega.
+O entregador realiza a entrega no endereço informado pelo cliente e confirma a conclusão da entrega no sistema.
 
-Qualquer pessoa pode acessar o sistema do supermercado e consultar os produtos, mas somente clientes cadastrados podem realizar compras e avaliar compras.
+Após a confirmação, o cliente pode avaliar a compra.
 
-O pagamento será realizado sempre via cartão de crédito no momento em que o cliente conclui a compra.
-No fechamento da compra é preciso informar o endereço de entrega, que pode ser igual ou diferente do endereço do cliente.
+### ⭐ Avaliação
+Depois que a entrega for confirmada, o cliente poderá avaliar a qualidade da compra.
 
-Para facilitar a seleção de produtos em uma nova compra, o cliente pode consultar seu histórico de compras e realizar uma cópia de uma compra antiga para a nova compra.
+As opções de avaliação são:
+- Ruim
+- Boa
+- Ótima
 
-### Os seguintes itens devem ser implementados:
-- Cadastro do cliente (incluir, alterar, excluir e consultar) (Cliente);
-- Visualizar produtos (Cliente);
-- Selecionar produtos (Cliente);
-- Fechar a compra (Cliente);
-- Pagar, com cartão de crédito; (Cliente)
-- Visualizar compras (setor de preparação);
-- Enviar compra para conferencia e embalagem (setor de preparação);
-- Visualizar compras (setor de conferência e embalagem);
-- Enviar compra para entrega (setor de embalagem);
-- Devolver compra para preparação (setor de embalagem);
-- Visualizar compras (setor de entrega);
-- Confirmar entrega (setor de entrega);
-- Avaliar compra (cliente);
-- Rastrear compra (cliente/funcionário), para consultar a situação da compra;
-- Copia da compra anterior (Cliente);
+O cliente também pode adicionar um comentário sobre sua experiência.
+
+### 🕒 Histórico e Rastreamento
+O sistema deve armazenar o histórico de movimentação da compra.
+
+
+### 🏷️ Produtos e Categorias
+- O supermercado possui produtos organizados em diferentes categorias.
+- O cliente pode consultar os produtos de acordo com a categoria desejada.
+
+
+### 👥 Controle de Acesso
+O sistema possui diferentes tipos de usuários e operações.
+
+#### Visitante
+- Consulta produtos
+- Visualiza categorias
+- Visualiza promoções
+
+#### Cliente cadastrado
+- Realiza compras
+- Consulta histórico
+- Copia compras anteriores
+- Rastrea compras
+- Avalia compras
+
+#### Funcionário
+Pode realizar operações relacionadas aos setores internos:
+- Preparação
+- Conferência e embalagem
+- Entrega
+
+
+## 📄 Sobre o Projeto
+Este projeto foi desenvolvido como atividade acadêmica para a disciplina de Linguagem de Programação III simulando uma plataforma de compras online de supermercado acompanhando o pedido desde a seleção dos produtos até a confirmação da entrega, passando pelos setores internos de preparação, conferência, embalagem e entrega.
